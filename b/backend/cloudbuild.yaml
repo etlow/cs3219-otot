@@ -1,0 +1,10 @@
+steps:
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+  dir: 'b/backend'
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['test']
+  dir: 'b/backend'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions', 'deploy', 'quote', '--trigger-http', '--runtime', 'nodejs12']
+  dir: 'b/backend'
